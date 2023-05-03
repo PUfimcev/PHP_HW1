@@ -27,24 +27,30 @@ echo "<hr>";
 
 /*2.  Даны три числа x = 2,y = 6 и z = 9. Найдите (x+1)4−2(z−2x^2+y^2)*/
 echo "<p><b>Task 2</b></p>";
+function result($x = 0, $y = 0, $z = 0){
 
-$x = 2;
-$y = 6;
-$z = 9;
-$result = ($x + 1) * 4 - 2 * ($z - 2*($x**2) + $y**2);
-echo "<b>$result</b>";
+    $result = ($x + 1) * 4 - 2 * ($z - 2*($x**2) + $y**2);
+    return $result;
+
+}
+
+echo "<b>" . result(2,6,9) . "</b>";
 echo "<hr>";
 
 /*3. Создайте переменные $a=17 и $b=10. Отнимите от $a переменную $b и 
 результат присвойте переменной $c. Затем создайте переменную $d, присвойте ей значение 7. Сложите переменные $c и $d, а результат запишите в переменную $result. Выведите на экран значение переменной $result.*/
 echo "<p><b>Task 3</b></p>";
 
-$a = 17;
-$b = 10;
-$c = $a - $b;
-$d = 7;
-$result = $c + $d;
-echo "<b>$result</b>";
+function result2($a = 0, $b = 0){
+    $c = $a - $b;
+    $d = 7;
+    $result = $c + $d;
+
+    return $result;
+
+}
+
+echo "<b>" . result2(17,10) . "</b>";
 echo "<hr>";
 
 /*4. Создайте переменные $text1='Привет, ' и $text2='Мир!'. С помощью этих переменных и операции сложения строк выведите на экран фразу 'Привет, Мир!'.*/
@@ -73,11 +79,15 @@ $num = (string)12345;
 $sum = $num[0] + $num[1] + $num[2] + $num[3] + $num[4];
 echo "<b>$sum</b>";
 echo "</br>";
-$sum = null;
-for($i = 0; $i < strlen($num); $i++){
-    $sum += $num[$i];
+
+function sum($num){
+    $sum = null;
+    for($i = 0; $i < strlen($num); $i++){
+        $sum += $num[$i];
+    }
+    return $sum;
 }
-echo "<b>$sum</b>";
+echo sum((string)12345);
 echo "<hr>";
 
 /*7. Напишите скрипт, который считает количество секунд в часе, в сутках, в месяце, в году и сколько прошло секунд с начала 2000 года*/
@@ -131,15 +141,19 @@ echo "<hr>";
 "Меня зовут Иванов (И. И.).
 Мне 5 лет.)*/
 echo "<p><b>Task 10</b></p>";
-
-define('SURNAME', 'Иванов');
-$name = 'Иван';
-$patronymic = 'Иванович';
-$age = 30;
-if(defined('SURNAME')){
-    echo "Меня зовут " . SURNAME . " (" . mb_substr($name, 0, 1) . "." .mb_substr($patronymic, 0, 1).")." . "</br>" . "Мне $age лет.";
+function data($surname = ''){
+    if(!empty($surname)) define('SURNAME', $surname);
+    $name = 'Иван';
+    $patronymic = 'Иванович';
+    $age = 30;
+    if(defined('SURNAME')){
+        return "Меня зовут " . SURNAME . " (" . mb_substr($name, 0, 1) . "." .mb_substr($patronymic, 0, 1).")." . "</br>" . "Мне $age лет.";
+    } else {
+        return "Введите фамилию";
+    }
 }
 
+echo  data('Иванов');
 echo "<hr>";
 
 ?>
